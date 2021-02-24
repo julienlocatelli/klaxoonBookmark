@@ -1,0 +1,31 @@
+{
+  "name": "klaxoonbookmark",
+  "version": "0.0.1-dev",
+  "description": "",
+  "scripts": {
+    "client:start": "cd client && webpack-cli serve --mode=development --env development --open --hot",
+    "client:build": "cd client && webpack --mode=production --env production --progress"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/julienlocatelli/klaxoonBookmark.git"
+  },
+  "author": "julien.locatelli@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/julienlocatelli/klaxoonBookmark/issues"
+  },
+  "homepage": "https://github.com/julienlocatelli/klaxoonBookmark#readme",
+  "devDependencies": {
+    "html-webpack-plugin": "5.2.0",
+    "ts-loader": "8.0.17",
+    "typescript": "4.2.2",
+    "webpack": "5.24.1",
+    "webpack-cli": "4.5.0",
+    "webpack-dev-server": "3.11.2"
+  },
+  "dependencies": {
+    "react": "17.0.1",
+    "react-dom": "17.0.1"
+  }
+}
