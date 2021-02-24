@@ -6,6 +6,11 @@
     "client:start": "cd client && webpack-cli serve --mode=development --env development --open --hot",
     "client:build": "cd client && webpack --mode=production --env production --progress"
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/julienlocatelli/klaxoonBookmark.git"
@@ -17,7 +22,10 @@
   },
   "homepage": "https://github.com/julienlocatelli/klaxoonBookmark#readme",
   "devDependencies": {
+    "@commitlint/cli": "12.0.0",
+    "@commitlint/config-conventional": "12.0.0",
     "html-webpack-plugin": "5.2.0",
+    "husky": "4.3.8",
     "ts-loader": "8.0.17",
     "typescript": "4.2.2",
     "webpack": "5.24.1",
