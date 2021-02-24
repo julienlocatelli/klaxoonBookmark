@@ -1,15 +1,23 @@
 {
-  "name": "klaxoonbookmark",
+  "name": "klaxoon_bookmark",
   "version": "0.0.1-dev",
-  "description": "",
+  "description": "Bookmark Media from Vimeo or Flickr",
   "scripts": {
     "client:start": "cd client && webpack-cli serve --mode=development --env development --open --hot",
-    "client:build": "cd client && webpack --mode=production --env production --progress"
+    "client:build": "cd client && webpack --mode=production --env production --progress",
+    "client:lint": "eslint './client/src/**/*.{ts,tsx}' --fix"
   },
   "husky": {
     "hooks": {
+      "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --config-path .prettierrc.js --write",
+      "eslint --config .eslintrc.js --fix"
+    ]
   },
   "repository": {
     "type": "git",
@@ -24,15 +32,25 @@
   "devDependencies": {
     "@commitlint/cli": "12.0.0",
     "@commitlint/config-conventional": "12.0.0",
+    "@typescript-eslint/eslint-plugin": "4.15.2",
+    "@typescript-eslint/parser": "4.15.2",
+    "eslint": "7.20.0",
+    "eslint-config-prettier": "8.1.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-prettier": "3.3.1",
+    "eslint-plugin-react": "7.22.0",
+    "eslint-plugin-react-hooks": "4.2.0",
     "html-webpack-plugin": "5.2.0",
     "husky": "4.3.8",
+    "prettier": "2.2.1",
     "ts-loader": "8.0.17",
-    "typescript": "4.2.2",
+    "typescript": "4.1.5",
     "webpack": "5.24.1",
     "webpack-cli": "4.5.0",
     "webpack-dev-server": "3.11.2"
   },
   "dependencies": {
+    "lint-staged": "10.5.4",
     "react": "17.0.1",
     "react-dom": "17.0.1"
   }
