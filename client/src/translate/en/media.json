@@ -1,0 +1,29 @@
+{
+  "form": {
+    "mainTitle": "Add a new media from Flickr or Vimeo",
+    "editMedia": "Edit media",
+    "url": "media url",
+    "title": "title",
+    "author": "author",
+    "date": "date",
+    "size": "size in px",
+    "width": "width",
+    "height": "height",
+    "duration": "duration",
+    "extraField": "extra field",
+    "tags": "tags",
+    "requiredSize": "The size fields are required for Flickr",
+    "helper": {
+      "url": "Copy past the Vimeo or Flickr link"
+    }
+  },
+  "list": {
+    "emptyList": "Oh your list is empty... Create a bookmark by clicking on the plus button !",
+    "url": "link",
+    "title": "title",
+    "author": "author",
+    "date": "date",
+    "size": "size",
+    "duration": "duration"
+  }
+}
