@@ -1,4 +1,5 @@
 {
+  "notFound": "No match for {{path}}",
   "form": {
     "helper": {
       "tagInput": "Press enter to add the tag"

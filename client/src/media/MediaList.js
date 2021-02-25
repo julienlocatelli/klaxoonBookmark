@@ -1,13 +1,15 @@
 import React from 'react';
-import { arrayOf, shape, string, number } from 'prop-types';
+import { arrayOf, shape, string, number, func, bool } from 'prop-types';
 import { connect } from 'react-redux';
 import { Edit } from 'react-feather';
 import { Link } from 'react-router-dom';
 
 import { useTranslation } from '../translate/I18n';
+import useAsyncLoad from '../hook/useAsyncLoad';
 
 import { Box, Text } from '../components/atom';
 import Button from '../components/molecule/Button';
+import Loader from '../components/molecule/Loader';
 
 const formatDate = (date) => {
   return new Date(date).toLocaleDateString('fr-FR', {
@@ -47,8 +49,14 @@ MediaHeaderItem.propTypes = {
   label: string
 };
 
-const MediaList = ({ medias }) => {
+const MediaList = ({ medias, fetchAllMedia }) => {
   const { t } = useTranslation();
+
+  const { isLoading } = useAsyncLoad(() => fetchAllMedia(), []);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   if (!medias.length)
     return (
@@ -117,6 +125,8 @@ const MediaList = ({ medias }) => {
 };
 
 MediaList.propTypes = {
+  isFetching: bool,
+  fetchAllMedia: func,
   medias: arrayOf(
     shape({
       url: string,
@@ -136,10 +146,15 @@ MediaList.propTypes = {
 
 const mapState = ({
   media: {
-    list: { data }
+    list: { data, isFetching }
   }
 }) => ({
-  medias: data
+  medias: data,
+  isFetching
 });
 
-export default connect(mapState)(MediaList);
+const mapDispatch = ({ media: { fetchAllMedia } }) => ({
+  fetchAllMedia
+});
+
+export default connect(mapState, mapDispatch)(MediaList);

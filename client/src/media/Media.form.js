@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { func, string } from 'prop-types';
+import { func, string, shape, number, instanceOf } from 'prop-types';
 import { useForm, Controller } from 'react-hook-form';
 
 import { useTranslation } from '../translate/I18n';
@@ -32,20 +32,11 @@ const makeSizeValidation = (t, isPictureMedia) => (value) => {
   }
 };
 
-const MediaForm = ({ title, onSubmit }) => {
+const MediaForm = ({ title, media, onSubmit }) => {
   const { t } = useTranslation();
 
   const { register, watch, control, errors, handleSubmit, setValue } = useForm({
-    defaultValues: {
-      author: 'author',
-      date: new Date(),
-      duration: '120',
-      size: { width: '46', height: '123' },
-      tags: ['tag'],
-      title: 'titre',
-      type: 'video',
-      url: 'https://vimeo.com/509854632'
-    }
+    defaultValues: media
   });
 
   // hidden field
@@ -180,9 +171,38 @@ const MediaForm = ({ title, onSubmit }) => {
   );
 };
 
+MediaForm.defaultProps = {
+  media: {
+    url: '',
+    title: '',
+    author: '',
+    duration: '',
+    date: new Date(),
+    type: '',
+    tags: [],
+    size: {
+      width: '',
+      height: ''
+    }
+  }
+};
+
 MediaForm.propTypes = {
   title: string,
-  onSubmit: func
+  onSubmit: func,
+  media: shape({
+    url: string,
+    title: string,
+    author: string,
+    duration: string | number,
+    date: instanceOf(Date),
+    type: string,
+    id: string | number,
+    size: shape({
+      width: string | number,
+      height: string | number
+    })
+  })
 };
 
 export default MediaForm;

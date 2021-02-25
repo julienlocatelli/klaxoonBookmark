@@ -13,7 +13,7 @@ describe('MediaService', () => {
 
       await mediaService.createMedia(media);
 
-      expect(api.post).toHaveBeenCalledWith(expect.objectContaining(media));
+      expect(api.post).toHaveBeenCalledWith('/createMedia', expect.objectContaining(media));
     });
   });
 });
