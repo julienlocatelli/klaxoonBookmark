@@ -28,8 +28,6 @@ const MediaForm = ({ title }) => {
 	const showPictureMedia = url.includes(MediaUrl.flickr);
 	const showVideoMedia = url.includes(MediaUrl.vimeo);
 
-	console.log('showVideoMedia', showVideoMedia, showPictureMedia);
-
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<Box py={3}>
@@ -57,6 +55,9 @@ const MediaForm = ({ title }) => {
 						<DatePicker value={value} onChange={onChange} label={t('media:form.date')} />
 					)}
 				/>
+
+				{showPictureMedia && <div>picture form</div>}
+				{showVideoMedia && <div>video form</div>}
 
 				<Box display="flex" justifyContent="flex-end" pt={3}>
 					<Button label="submit" type="submit" />
