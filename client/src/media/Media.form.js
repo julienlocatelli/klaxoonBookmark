@@ -36,7 +36,16 @@ const MediaForm = ({ title, onSubmit }) => {
   const { t } = useTranslation();
 
   const { register, watch, control, errors, handleSubmit, setValue } = useForm({
-    defaultValues: { date: new Date(), tags: [] }
+    defaultValues: {
+      author: 'author',
+      date: new Date(),
+      duration: '120',
+      size: { width: '46', height: '123' },
+      tags: ['tag'],
+      title: 'titre',
+      type: 'video',
+      url: 'https://vimeo.com/509854632'
+    }
   });
 
   // hidden field

@@ -7,6 +7,9 @@ export const mediaModel = (mediaService) => ({
     }
   },
   reducers: {
+    fetchingMedia(state, isFetching = true) {
+      return { ...state, list: { ...state.list, isFetching } };
+    },
     creatingMedia(state, isCreating = true) {
       return { ...state, isCreating };
     },
@@ -16,7 +19,16 @@ export const mediaModel = (mediaService) => ({
         isCreating: false,
         list: {
           ...state.list,
-          data: [...state.list.data, media]
+          data: [media, ...state.list.data]
+        }
+      };
+    },
+    addMedias(state, medias) {
+      return {
+        ...state,
+        list: {
+          isFetching: false,
+          data: [...medias, ...state.list.data]
         }
       };
     }
@@ -28,7 +40,16 @@ export const mediaModel = (mediaService) => ({
         const createdMedia = await mediaService.createMedia(media);
         dispatch.media.addMedia(createdMedia);
       } catch (e) {
-        // waiting for the backend
+        // TODO: need to be implemented
+      }
+    },
+    async fetchMedia() {
+      try {
+        dispatch.media.fetchingMedia();
+        const medias = await mediaService.fetchMedia();
+        dispatch.media.addMedias(medias);
+      } catch (e) {
+        // TODO: need to be implemented
       }
     }
   })

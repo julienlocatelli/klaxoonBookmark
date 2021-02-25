@@ -1,30 +1,33 @@
 import React from 'react';
 
-import { useTranslation } from './translate/I18n';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import { Box, Text } from './components/atom';
-import CreateMedia from './media/CreateMedia';
+import { Box } from './components/atom';
+import MediaHome from './media/MediaHome';
+import EditMedia from './media/EditMedia';
 
-const App = () => {
-	const { t } = useTranslation();
-
-	return (
-		<Box flex={1} padding={4}>
-			<Box
-				display="flex"
-				alignItems="center"
-				width={740}
-				padding={3}
-				margin="auto"
-				border="1px solid"
-				borderColor="silverPink"
-				borderRadius={2}>
-				<Text color="primary">{t('app:mainTitle')}</Text>
-
-				<CreateMedia />
-			</Box>
-		</Box>
-	);
-};
+const App = () => (
+  <Box flex={1} padding={4}>
+    <Box
+      width={740}
+      padding={3}
+      margin="auto"
+      border="1px solid"
+      borderColor="silverPink"
+      borderRadius={2}
+    >
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <MediaHome />
+          </Route>
+          <Route path="/editMedia/:id">
+            <EditMedia />
+          </Route>
+        </Switch>
+      </Router>
+    </Box>
+  </Box>
+);
 
 export default App;
