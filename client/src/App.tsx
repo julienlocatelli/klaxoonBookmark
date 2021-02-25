@@ -1,8 +1,10 @@
 import React from 'react';
 
+import { useTranslation } from './translate/I18n';
+
 import Box from './components/atom/Box';
 import Text from './components/atom/Text';
-import { useTranslation } from './translate/I18n';
+import MediaForm from './media/Media.form';
 
 const App: React.FC = () => {
   const { t } = useTranslation();
@@ -15,10 +17,14 @@ const App: React.FC = () => {
         margin="auto"
         border="1px solid"
         borderColor="silverPink"
-        borderRadius={3}
+        borderRadius={2}
         bg="light"
       >
         <Text color="primary">{t('app:mainTitle')}</Text>
+
+        <Box>
+          <MediaForm title={t('media:form.mainTitle')} />
+        </Box>
       </Box>
     </Box>
   );
