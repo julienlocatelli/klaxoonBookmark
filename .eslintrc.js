@@ -1,44 +1,48 @@
-const prettier = require('./.prettierrc');
-
 module.exports = {
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'eslint-plugin-import', 'prettier'],
-  env: {
-    browser: true
-  },
-  extends: [
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react/recommended',
-    'plugin:prettier/recommended'
-  ],
-  parserOptions: {
-    project: ['tsconfig.json'],
-    ecmaVersion: 2020,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true
-    }
-  },
-  rules: {
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-unused-vars': 'off',
-    'react/jsx-filename-extension': [
-      'warn',
-      {
-        extensions: ['.jsx', '.tsx']
-      }
-    ],
-    'react/prop-types': 'off',
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
-    'prettier/prettier': [
-      'error',
-      prettier
-    ]
-  },
-  settings: {
-    react: {
-      version: 'detect'
-    }
-  }
+	env: {
+		'shared-node-browser': true,
+		node: true,
+		browser: true,
+		es6: true,
+		'jest/globals': true
+	},
+	parser: 'babel-eslint',
+	plugins: ['react', 'prettier', 'jest'],
+	parserOptions: {
+		ecmaFeatures: {
+			modules: true
+		}
+	},
+	extends: ['eslint:recommended', 'plugin:react/recommended'],
+	rules: {
+		'object-curly-spacing': ['error', 'always'],
+		'array-bracket-spacing': ['error', 'never'],
+		'computed-property-spacing': 2,
+		'comma-dangle': [
+			1,
+			{
+				objects: 'never',
+				arrays: 'never',
+				imports: 'ignore',
+				exports: 'ignore',
+				functions: 'ignore'
+			}
+		],
+		'prettier/prettier': [
+			'error',
+			{
+				parser: 'babel',
+				singleQuote: true,
+				trailingComma: 'none',
+				bracketSpacing: true,
+				jsxBracketSameLine: true,
+				tabWidth: 2,
+				useTabs: true,
+				semi: true,
+				arrowParens: 'always'
+			}
+		],
+		'react/display-name': 0,
+		'no-extra-boolean-cast': 0
+	}
 };
