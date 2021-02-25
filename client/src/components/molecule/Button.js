@@ -26,8 +26,8 @@ const StyledButton = styled('button')(
 	})
 );
 
-const Button = ({ label, onClick, children, variant }) => (
-	<StyledButton onClick={onClick} variant={variant}>
+const Button = ({ label, onClick, children, ...rest }) => (
+	<StyledButton onClick={onClick} {...rest}>
 		{label ? (
 			<Box px={2} py={1}>
 				<Text color="white">{label}</Text>
@@ -47,7 +47,8 @@ Button.propTypes = {
 	label: string,
 	onClick: func,
 	children: element,
-	variant: string
+	variant: string,
+	'aria-label': string
 };
 
 export default Button;

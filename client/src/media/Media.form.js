@@ -10,8 +10,8 @@ import '../components/molecule/form/DatePicker';
 import Button from '../components/molecule/Button';
 
 const MediaUrl = Object.freeze({
-	vimeo: 'https://vimeo.com',
-	flickr: 'https://vimeo.com'
+	vimeo: 'vimeo.com',
+	flickr: 'flickr.com'
 });
 
 const makeSizeValidation = (t, isPictureMedia) => (value) => {
@@ -144,7 +144,7 @@ const MediaForm = ({ title }) => {
 				/>
 
 				<Box display="flex" justifyContent="flex-end" pt={3}>
-					<Button label="submit" onClick={handleSubmit(onSubmit)} />
+					<Button label="submit" aria-label="btn_submit" onClick={handleSubmit(onSubmit)} />
 				</Box>
 			</Box>
 		</>

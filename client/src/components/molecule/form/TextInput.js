@@ -32,7 +32,7 @@ const TextInput = forwardRef(({ label, helperText, name, error, ...rest }, ref) 
 					</Box>
 				)}
 				<Box flex={1} ml={1}>
-					<StyledTextInput name={name} ref={ref} {...rest} />
+					<StyledTextInput name={name} ref={ref} aria-label={`field_${name}`} {...rest} />
 				</Box>
 			</Box>
 
@@ -46,7 +46,7 @@ const TextInput = forwardRef(({ label, helperText, name, error, ...rest }, ref) 
 
 			{error && (
 				<Box>
-					<Text color="danger" fontSize={0}>
+					<Text color="danger" fontSize={0} aria-label={`field_${name}_error`}>
 						{error}
 					</Text>
 				</Box>
