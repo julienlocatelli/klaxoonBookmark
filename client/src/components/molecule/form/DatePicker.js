@@ -1,8 +1,7 @@
 import React from 'react';
-import { string, func } from 'prop-types';
+import { string, func, instanceOf } from 'prop-types';
 import RDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 import Box from '../../atom/Box';
 import TextInput from './TextInput';
@@ -20,7 +19,7 @@ const DatePicker = ({ label, value, onChange }) => (
 
 DatePicker.propTypes = {
 	label: string,
-	value: string,
+	value: instanceOf(Date),
 	onChange: func
 };
 

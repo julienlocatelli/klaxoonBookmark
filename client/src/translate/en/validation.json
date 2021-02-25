@@ -1,0 +1,6 @@
+{
+  "form": {
+    "required": "This field is required",
+    "shouldBeNumber": "Should be a number"
+  }
+}

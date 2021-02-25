@@ -1,10 +1,17 @@
 {
   "form": {
     "mainTitle": "Add a new media from Flickr or Vimeo",
-    "url": "url",
+    "url": "media url",
     "title": "title",
     "author": "author",
     "date": "date",
+    "size": "size in px",
+    "width": "width",
+    "height": "height",
+    "duration": "duration",
+    "extraField": "extra field",
+    "tags": "tags",
+    "requiredSize": "The size fields are required for Flickr",
     "helper": {
       "url": "Copy past the Vimeo or Flickr link"
     }

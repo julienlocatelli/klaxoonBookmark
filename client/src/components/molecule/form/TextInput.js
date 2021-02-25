@@ -25,18 +25,18 @@ const TextInput = forwardRef(({ label, helperText, name, error, ...rest }, ref) 
 		<Box py={2}>
 			<Box display="flex" flexDirection="row" alignItems="center">
 				{label && (
-					<Box width={50}>
-						<Text fontSize={1} color="secondary">
+					<Box width={55}>
+						<Text fontSize={1} color="grey">
 							{label}
 						</Text>
 					</Box>
 				)}
 				<Box flex={1} ml={1}>
-					<StyledTextInput name={name} placeholder={label} ref={ref} {...rest} />
+					<StyledTextInput name={name} ref={ref} {...rest} />
 				</Box>
 			</Box>
 
-			{helperText && (
+			{!error && helperText && (
 				<Box>
 					<Text color="primary" fontSize={0}>
 						{helperText}
