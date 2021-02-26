@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const dotenv = require('dotenv').config({ path: __dirname + '/../server/.env' });
+const webpack = require('webpack');
 
 module.exports = {
   devtool: 'source-map',
@@ -45,6 +47,9 @@ module.exports = {
       filename: 'index.html', //target html
       template: './public/index.html' //source html
     }),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': dotenv.parsed
+    })
   ]
 };
