@@ -8,7 +8,7 @@ class MediaService {
       const response = await this.api.post('/media', media);
       return response.data;
     } catch (e) {
-      throw Error(e);
+      throw e.message;
     }
   }
 
