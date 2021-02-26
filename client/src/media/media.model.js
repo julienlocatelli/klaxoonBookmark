@@ -1,4 +1,6 @@
-export const mediaModel = (mediaService) => ({
+const uniqList = (key, list) => [...new Map(list.map((item) => [item[key], item])).values()];
+
+export const mediaModel = (mediaService, toast) => ({
   state: {
     isCreating: false,
     list: {
@@ -23,7 +25,7 @@ export const mediaModel = (mediaService) => ({
         isCreating: false,
         list: {
           ...state.list,
-          data: [...new Set([media, ...state.list.data])]
+          data: uniqList('id', [media, ...state.list.data])
         }
       };
     },
@@ -32,7 +34,7 @@ export const mediaModel = (mediaService) => ({
         ...state,
         list: {
           isFetching: false,
-          data: [...new Set([...medias, ...state.list.data])]
+          data: uniqList('id', [...medias, ...state.list.data])
         }
       };
     },
@@ -63,6 +65,10 @@ export const mediaModel = (mediaService) => ({
         current: {
           isUpdating: false,
           data: media
+        },
+        list: {
+          ...state.list,
+          data: state.list.data.map((item) => (item.id === media.id ? media : item))
         }
       };
     }
@@ -70,11 +76,12 @@ export const mediaModel = (mediaService) => ({
   effects: (dispatch) => ({
     async createMedia(media) {
       try {
-        dispatch.media.creatingMedia(true);
+        dispatch.media.creatingMedia();
         const createdMedia = await mediaService.createMedia(media);
+        console.log('createdMedia', createdMedia);
         dispatch.media.addMedia(createdMedia);
       } catch (e) {
-        // TODO: need to be implemented
+        toast.error(e);
       }
     },
     async fetchMedia(id) {
@@ -83,7 +90,7 @@ export const mediaModel = (mediaService) => ({
         const media = await mediaService.fetchMedia(id);
         dispatch.media.setCurrentMedia(media);
       } catch (e) {
-        // TODO: need to be implemented
+        toast.error(e);
       }
     },
     async fetchAllMedia() {
@@ -92,16 +99,16 @@ export const mediaModel = (mediaService) => ({
         const medias = await mediaService.fetchAllMedia();
         dispatch.media.addMedias(medias);
       } catch (e) {
-        // TODO: need to be implemented
+        toast.error(e);
       }
     },
     async editMedia(media) {
       try {
         dispatch.media.updatingMedia();
-        const updatedMedia = await mediaService.updateMedia(media);
-        dispatch.media.setMedia(updatedMedia);
+        await mediaService.updateMedia(media);
+        dispatch.media.setMedia(media);
       } catch (e) {
-        // TODO: need to be implemented
+        toast.error(e);
       }
     }
   })

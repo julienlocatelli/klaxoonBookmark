@@ -19,13 +19,18 @@ const CreateMedia = ({ createMedia }) => {
 
   const { t } = useTranslation();
 
+  const handleSubmit = async (media) => {
+    await createMedia(media);
+    setModal(false);
+  };
+
   return (
     <>
       <Button variant="clear" onClick={() => setModal(true)}>
         <PlusCircle color={colors.primary} />
       </Button>
       <Modal show={showModal} onClose={() => setModal(false)}>
-        <MediaForm title={t('media:form.mainTitle')} onSubmit={(media) => createMedia(media)} />
+        <MediaForm title={t('media:form.mainTitle')} onSubmit={handleSubmit} />
       </Modal>
     </>
   );

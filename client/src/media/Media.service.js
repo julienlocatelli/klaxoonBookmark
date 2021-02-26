@@ -1,38 +1,42 @@
-const fakeMedia = {
-  url: 'https://vimeo.com/509854632',
-  title: 'titre',
-  author: 'author',
-  duration: '120',
-  date: '2021-02-25T18:43:15.524Z',
-  type: 'video',
-  id: 1614278596818,
-  size: {
-    width: 500,
-    height: 300
-  }
-};
-
 class MediaService {
   constructor(api) {
     this.api = api;
   }
 
-  createMedia(media) {
-    // TODO: remove id: Date.now when connected to the BE
-    return this.api.post('/createMedia', { ...media, id: Date.now() });
+  async createMedia(media) {
+    try {
+      const response = await this.api.post('/media', media);
+      return response.data;
+    } catch (e) {
+      throw Error(e);
+    }
   }
 
-  fetchMedia(id) {
-    return this.api.get(`/media/${id}`, fakeMedia);
+  async fetchMedia(id) {
+    try {
+      const response = await this.api.get(`/media/${id}`);
+      return response.data;
+    } catch (e) {
+      throw e.message;
+    }
   }
 
-  // TODO: add different filters as params
-  fetchAllMedia() {
-    return this.api.get('/media', [fakeMedia]);
+  // TODO: add different filters and pagination e.g. {take: 10, drop: 0}
+  async fetchAllMedia() {
+    try {
+      const response = await this.api.get('/media');
+      return response.data;
+    } catch (e) {
+      throw e.message;
+    }
   }
 
-  updateMedia(media) {
-    return this.api.put(`/media/${media.id}`, media);
+  async updateMedia(media) {
+    try {
+      return await this.api.put('media', media);
+    } catch (e) {
+      throw e.message;
+    }
   }
 }
 
