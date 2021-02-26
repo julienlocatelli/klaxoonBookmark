@@ -4,7 +4,7 @@ Klaxoon Bookmark is a small app to bookmark media from Flickr or Vimeo
 
 ## Prerequisites
 
-[npm](https://www.npmjs.com/get-npm) | [yarn](https://classic.yarnpkg.com/en/docs/install/) and node installed on your machine
+[npm](https://www.npmjs.com/get-npm) | [yarn](https://classic.yarnpkg.com/en/docs/install/) and node (**>=10**) installed on your machine
 
 ## Installation
 

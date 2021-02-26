@@ -1,5 +1,8 @@
 {
   "name": "klaxoon_bookmark",
+  "engines": {
+    "node": "10.x"
+  },
   "version": "0.0.1-dev",
   "description": "Bookmark Media from Vimeo or Flickr",
   "scripts": {

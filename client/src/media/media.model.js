@@ -78,7 +78,6 @@ export const mediaModel = (mediaService, toast) => ({
       try {
         dispatch.media.creatingMedia();
         const createdMedia = await mediaService.createMedia(media);
-        console.log('createdMedia', createdMedia);
         dispatch.media.addMedia(createdMedia);
       } catch (e) {
         toast.error(e);
