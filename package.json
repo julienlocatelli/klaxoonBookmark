@@ -4,7 +4,6 @@
   "description": "Bookmark Media from Vimeo or Flickr",
   "scripts": {
     "client:start": "cd client && webpack-dev-server --mode development --open --hot",
-    "client:build": "cd client && webpack --config webpack.prod.js --mode production",
     "client:lint": "eslint './client/src/**/*.{js,jsx}' --fix",
     "client:pretty": "prettier --config-path .prettierrc.js --write",
     "client:test": "cd client && jest",
