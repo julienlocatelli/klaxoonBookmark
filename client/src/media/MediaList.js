@@ -27,6 +27,14 @@ const formatSize = (size) => {
   return '-';
 };
 
+const formatDuration = (duration) => {
+  if (duration) {
+    return `${duration}s`;
+  }
+
+  return '-';
+};
+
 const MediaItem = ({ label }) => (
   <Box px={2} py={1}>
     <Text>{label}</Text>
@@ -102,7 +110,7 @@ const MediaList = ({ medias, fetchAllMedia }) => {
               <MediaItem label={formatDate(media.date)} />
             </td>
             <td>
-              <MediaItem label={`${media.duration}s`} />
+              <MediaItem label={formatDuration(media.duration)} />
             </td>
             <td>
               <MediaItem label={formatSize(media.size)} />

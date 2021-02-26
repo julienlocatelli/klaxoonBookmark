@@ -3,3 +3,7 @@
 
 #client
 /client/dist/
+
+#server
+/server/dist
+/server/.env
