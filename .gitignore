@@ -1,9 +1,12 @@
 # dependencies
 /node_modules
 
-#client
+# client
 /client/dist/
 
-#server
+# server
 /server/dist
 /server/.env
+
+# sonar
+.scannerwork
